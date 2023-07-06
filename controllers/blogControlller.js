@@ -146,7 +146,7 @@ exports.deleteBlogController = async (req, res) => {
 };
 
 //GET USER BLOG
-exports.userBlogControlller = async (req, res) => {
+exports.userBlogController = async (req, res) => {
   try {
     const userBlog = await userModel.findById(req.params.id).populate("blogs");
 

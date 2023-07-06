@@ -11,12 +11,12 @@ exports.registerController = async (req, res) => {
         message: "Please Fill all fields",
       });
     }
-    //exisiting user
-    const exisitingUser = await userModel.findOne({ email });
-    if (exisitingUser) {
+    //existing user
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
       return res.status(401).send({
         success: false,
-        message: "user already exisits",
+        message: "user already exists",
       });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -82,19 +82,19 @@ exports.loginController = async (req, res) => {
     if (!isMatch) {
       return res.status(401).send({
         success: false,
-        message: "Invlid username or password",
+        message: "Invalid username or password",
       });
     }
     return res.status(200).send({
       success: true,
-      messgae: "login successfully",
+      message: "login successfully",
       user,
     });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error In Login Callcback",
+      message: "Error In Login Callback",
       error,
     });
   }
